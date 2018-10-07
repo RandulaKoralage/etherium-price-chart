@@ -26,17 +26,17 @@ class App extends Component {
       const url = 'https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=USD&limit=30&aggregate=3&e=Cexio';
 
       fetch(url).then( r => r.json())
-        .then((bitcoinData) => {
+        .then((cryptoprice) => {
           const sortedData = [];
           let count = 0;
          
-          for (let date in bitcoinData.Data){
+          for (let date in cryptoprice.Data){
            
             sortedData.push({
-              d: moment(bitcoinData.Data[date].time*1000).format('MMM DD YYYY'),
-              p: bitcoinData.Data[date].close.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
+              d: moment(cryptoprice.Data[date].time*1000).format('MMM DD YYYY'),
+              p: cryptoprice.Data[date].close.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
               x: count, 
-              y: bitcoinData.Data[date].close
+              y: cryptoprice.Data[date].close
             });
             count++;
           }

@@ -18,13 +18,13 @@ class InfoBox extends Component {
       const url = 'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD';
 
       fetch(url).then(r => r.json())
-        .then((bitcoinData) => {
-          const price = bitcoinData.USD;
+        .then((cryptoprice) => {
+          const price = cryptoprice.USD;
           const change = price - data[0].y;
           const changeP = (price - data[0].y) / data[0].y * 100;
 
           this.setState({
-            currentPrice: bitcoinData.USD,
+            currentPrice: cryptoprice.USD,
             monthChangeD: change.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
             monthChangeP: changeP.toFixed(2) + '%',
             updatedAt: moment().calendar()
